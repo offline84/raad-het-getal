@@ -1,0 +1,10 @@
+div {
+  background-color: antiquewhite;
+  width: fit-content;
+  height: fit-content;
+  /* Center vertically */
+  position: absolute;
+  top: 40%;
+  left: 43%;
+
+}
