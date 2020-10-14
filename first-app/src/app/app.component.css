@@ -1,10 +1,19 @@
 div {
-  background-color: antiquewhite;
+
   width: fit-content;
   height: fit-content;
   /* Center vertically */
   position: absolute;
   top: 40%;
   left: 43%;
+}
 
+section {
+  background-color: antiquewhite;
+  margin: 1em;
+  padding: 0.5em;
+}
+
+h1, h3{
+  text-align: center;
 }

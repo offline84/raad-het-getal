@@ -8,12 +8,21 @@
         <input #guess placeholder="Jouw gok" (keydown.enter)="waagEenGokje(guess.value)"/>
         <button (click)="waagEenGokje(guess.value)">Doe een gok</button>
       </section>
-      <section class="check-number">
-        <p>{{guidelines[numberOfGuesses]}}</p>
-        <p>Je mag nog {{numberOfGuesses}} keer raden.</p>
 
-        <ul>
-          <li *ngFor="let item of guidelines">{{item}}</li>
-        </ul>
+      <section *ngIf="gok!=random; else win">
+        <p *ngIf="numberOfGuesses!=0; else outOfChances"><strong>Je mag nog {{numberOfGuesses}} keer raden.</strong></p>
+        <ng-template #outOfChances>
+          <p>Al jouw kansen zijn opbruikt, het nummer dat we zochten was {{random}}.</p>
+          <button (click)="refreshPage()">probeer opnieuw</button>
+        </ng-template>
+        <p *ngFor="let item of guidelines">{{item}}</p>
       </section>
+
+      <ng-template #win>
+        <section>
+          <h2>U hebt het correcte nummer geraden.</h2>
+          <label>het nummer was <strong>{{random}}</strong></label>
+          <button (click)="refreshPage()">opnieuw</button>
+        </section>
+      </ng-template>
     </div>

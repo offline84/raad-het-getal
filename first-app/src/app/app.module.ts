@@ -2,12 +2,14 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
+import { CommonModule, NgForOf } from '@angular/common';
 
 @NgModule({
-  declarations: [],
+  declarations: [AppComponent],
   imports: [
-    BrowserModule
+    BrowserModule, CommonModule
   ],
+  exports:[AppComponent],
   providers: [],
   bootstrap: [AppComponent]
 })

@@ -1,25 +1,23 @@
-import { NgIf, NgForOf } from '@angular/common';
-import { componentFactoryName } from '@angular/compiler';
-import { Component, ElementRef, ViewChild } from '@angular/core';
-import { Input } from '@angular/core';
+import { Component, ElementRef, ViewChild, inject } from '@angular/core';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+  styleUrls: ['./app.component.css'],
+  inputs:['guidelines'],
 })
 
 export class AppComponent {
   title = 'first-app';
-
   @ViewChild('guess') guess: ElementRef;
-
   random: number= Math.floor(Math.random()*100);
   numberOfGuesses: number = 10;
   guidelines: string [] = new Array(9);
   guidingText: string;
+  gok: number;
 
   waagEenGokje(value) {
+    this.gok = value;
     if (this.numberOfGuesses <= 0){
       window.alert('Je hebt het nummer niet gevonden binnen het maximum aantal keer raden. Probeer het opnieuw');
     }
@@ -49,5 +47,10 @@ export class AppComponent {
   this.guidelines[this.numberOfGuesses] = value + " => " + this.guidingText;
   }
 
+  refreshPage(){
+    this.random = Math.floor(Math.random()*100);
+    this.numberOfGuesses = 10;
+    this.guidelines = new Array(9);
+  }
 }
 
