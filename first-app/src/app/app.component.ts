@@ -32,7 +32,6 @@ export class AppComponent {
     this.guess.nativeElement.value = null;
   }
 
-
   helpEenHandje(value){
   if (this.random == value){
     window.alert('Hoera, je hebt het juiste nummer!!!');
@@ -52,5 +51,6 @@ export class AppComponent {
     this.numberOfGuesses = 10;
     this.guidelines = new Array(9);
   }
+
 }
 
