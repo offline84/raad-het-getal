@@ -5,8 +5,8 @@
         <h1>Raad het getal!</h1>
         <h3>Raad een getal tussen 1 en 100.</h3>
         <p>Je mag maximum 10 keer raden.</p>
-        <input #guess placeholder="Jouw gok" (keydown.enter)="waagEenGokje(guess.value)"/>
-        <button (click)="waagEenGokje(guess.value)">Doe een gok</button>
+        <input #guess placeholder="Jouw gok" [disabled]="numberOfGuesses<=0 || gok==random" (keydown.enter)="waagEenGokje(guess.value)"/>
+        <button (click)="waagEenGokje(guess.value)" [disabled]="numberOfGuesses<=0 || gok==random">Doe een gok</button>
       </section>
 
       <section *ngIf="gok!=random; else win">
