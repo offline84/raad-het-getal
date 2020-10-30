@@ -1,28 +1,50 @@
+<mat-grid-list cols="3" rowHeight="7:3">
+  <mat-grid-tile></mat-grid-tile>
+  <mat-grid-tile></mat-grid-tile>
+  <mat-grid-tile></mat-grid-tile>
+  <mat-grid-tile></mat-grid-tile>
+  <mat-grid-tile>
+    <div>
+      <h1>Raad het getal!</h1>
+      <h3>Raad een getal tussen 1 en 100.</h3>
+      <p>Je mag maximum 10 keer raden.</p>
 
-    <
-    <div id="raadGetal">
-      <section>
-        <h1>Raad het getal!</h1>
-        <h3>Raad een getal tussen 1 en 100.</h3>
-        <p>Je mag maximum 10 keer raden.</p>
-        <input #guess placeholder="Jouw gok" [disabled]="numberOfGuesses<=0 || gok==random" (keydown.enter)="waagEenGokje(guess.value)"/>
-        <button (click)="waagEenGokje(guess.value)" [disabled]="numberOfGuesses<=0 || gok==random">Doe een gok</button>
-      </section>
+      <mat-form-field>
+        <input #guess matInput placeholder="Jouw gok" [disabled]="numberOfGuesses<=0 || gok==random"
+          (keydown.enter)="waagEenGokje(guess.value)" />
+      </mat-form-field>
 
-      <section *ngIf="gok!=random; else win">
-        <p *ngIf="numberOfGuesses!=0; else outOfChances"><strong>Je mag nog {{numberOfGuesses}} keer raden.</strong></p>
-        <ng-template #outOfChances>
-          <p>Al jouw kansen zijn opbruikt, het nummer dat we zochten was {{random}}.</p>
-          <button (click)="refreshPage()">probeer opnieuw</button>
-        </ng-template>
-        <p *ngFor="let item of guidelines">{{item}}</p>
-      </section>
+      <button mat-raised-button color="primary" (click)="waagEenGokje(guess.value)"
+        [disabled]="numberOfGuesses<=0 || gok==random">Doe een gok</button>
 
-      <ng-template #win>
-        <section>
-          <h2>U hebt het correcte nummer geraden.</h2>
-          <label>het nummer was <strong>{{random}}</strong></label>
-          <button (click)="refreshPage()">opnieuw</button>
-        </section>
-      </ng-template>
     </div>
+  </mat-grid-tile>
+  <mat-grid-tile></mat-grid-tile>
+  <mat-grid-tile></mat-grid-tile>
+  <mat-grid-tile rowspan="2">
+    <mat-grid-tile-header>
+      <mat-progress-bar [color]="updateKleur()"  mode="determinate" value="{{numberOfGuesses * 10}}"></mat-progress-bar>
+    </mat-grid-tile-header>
+    <div *ngIf="gok!=random; else win">
+      <p *ngIf="numberOfGuesses!=0; else outOfChances"><strong>Je mag nog {{numberOfGuesses}} keer raden.</strong></p>
+      <p *ngFor="let item of guidelines">{{item}}</p>
+    </div>
+  </mat-grid-tile>
+  <mat-grid-tile></mat-grid-tile>
+  <mat-grid-tile></mat-grid-tile>
+  <mat-grid-tile></mat-grid-tile>
+  <mat-grid-tile></mat-grid-tile>
+</mat-grid-list>
+
+<ng-template #win>
+  <div>
+    <h2>U hebt het correcte nummer geraden.</h2>
+    <p>het nummer was <strong>{{random}}</strong></p>
+    <button mat-stroked-button color="groen" (click)="refreshPage()">opnieuw</button>
+  </div>
+</ng-template>
+
+<ng-template #outOfChances>
+  <p>Al jouw kansen zijn opbruikt, het nummer dat we zochten was {{random}}.</p>
+  <button mat-stroked-button color="groen" (click)="refreshPage()">opnieuw</button>
+</ng-template>

@@ -1,4 +1,4 @@
-import { Component, ElementRef, ViewChild } from '@angular/core';
+import { Component, ElementRef, ViewChild, Inject } from '@angular/core';
 
 @Component({
   selector: 'app-root',
@@ -43,6 +43,9 @@ export class AppComponent {
     this.guidingText = "Het getal dat je zoekt is groter dan dit getal.";
   }
   this.numberOfGuesses = this.numberOfGuesses - 1;
+  this.updateKleur();
+
+
   this.guidelines[this.numberOfGuesses] = value + " => " + this.guidingText;
   }
 
@@ -52,5 +55,10 @@ export class AppComponent {
     this.guidelines = new Array(9);
   }
 
-}
+  updateKleur(){
+    if(this.numberOfGuesses <= 3){ return "warn";}
+    else if(this.numberOfGuesses <= 6){ return 'accent';}
+    else return "primary";
+  }
 
+}

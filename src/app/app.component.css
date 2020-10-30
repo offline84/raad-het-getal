@@ -1,19 +1,13 @@
 div {
-
-  width: fit-content;
-  height: fit-content;
-  /* Center vertically */
-  position: absolute;
-  top: 40%;
-  left: 43%;
-}
-
-section {
   background-color: rgb(253, 253, 253);
-  margin: 1em;
-  padding: 0.5em;
+  margin: 2em;
+  padding: 1em;
 }
 
 h1, h3{
   text-align: center;
+}
+
+.mat-stroked-button.mat-groen:hover {
+  background-color: green;
 }
